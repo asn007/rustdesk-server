@@ -1,9 +1,5 @@
 version: '3'
 
-networks:
-  rustdesk-net:
-    external: false
-
 services:
   hbbs:
     container_name: hbbs
@@ -12,25 +8,25 @@ services:
       - 21116:21116
       - 21116:21116/udp
       - 21118:21118
-    image: rustdesk/rustdesk-server:latest
-    command: hbbs -r rustdesk.example.com:21117
+    image: asn007/rustdesk-server:latest
+    build:
+      context: .
+    command: hbbs -r 45.8.97.46:21117 -k _
     volumes:
-      - ./data:/root
-    networks:
-      - rustdesk-net
+      - ./data:/opt/run
     depends_on:
       - hbbr
     restart: unless-stopped
 
   hbbr:
     container_name: hbbr
+    build:
+      context: .
     ports:
       - 21117:21117
       - 21119:21119
-    image: rustdesk/rustdesk-server:latest
-    command: hbbr
+    image: asn007/rustdesk-server:latest
+    command: hbbr -k _
     volumes:
-      - ./data:/root
-    networks:
-      - rustdesk-net
+      - ./data:/opt/run
     restart: unless-stopped

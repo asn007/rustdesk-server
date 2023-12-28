@@ -348,7 +348,7 @@ impl RendezvousServer {
                         if peer.uuid.is_empty() {
                             (true, false)
                         } else {
-                            if peer.uuid == rk.uuid {
+                            /*if peer.uuid == rk.uuid {
                                 if peer.info.ip != ip && peer.pk != rk.pk {
                                     log::warn!(
                                         "Peer {} ip/pk mismatch: {}/{:?} vs {}/{:?}",
@@ -370,7 +370,7 @@ impl RendezvousServer {
                                 );
                                 drop(peer);
                                 return send_rk_res(socket, addr, UUID_MISMATCH).await;
-                            }
+                            }*/
                             let ip_changed = peer.info.ip != ip;
                             (
                                 peer.uuid != rk.uuid || peer.pk != rk.pk || ip_changed,
