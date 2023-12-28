@@ -35,6 +35,6 @@ RUN apt-get update
 RUN apt-get install -y \
     build-essential \
     curl
-COPY --from=builder /opt/build/target/release/hbbr .
-COPY --from=builder /opt/build/target/release/hbbs .
-COPY --from=builder /opt/build/target/release/rustdesk-utils .
+COPY --from=builder /opt/build/target/release/hbbr /usr/bin
+COPY --from=builder /opt/build/target/release/hbbs /usr/bin
+COPY --from=builder /opt/build/target/release/rustdesk-utils /usr/bin
